@@ -14,7 +14,7 @@ async function getChatGptResponse(messages: any[]) {
   const data = {
     model: "gpt-3.5-turbo",
     messages: messages,
-    stream: true,
+    stream: false,
   };
 
   try {
