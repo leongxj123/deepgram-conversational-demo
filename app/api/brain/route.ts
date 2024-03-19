@@ -1,15 +1,11 @@
 import { OpenAIStream, StreamingTextResponse } from "ai";
 
-// Optional, but recommended: run on the edge runtime.
-// See https://vercel.com/docs/concepts/functions/edge-functions
 export const runtime = "edge";
 
 export async function POST(req: Request) {
-  // Extract the `messages` from the body of the request
   const { messages } = await req.json();
   const start = Date.now();
 
-  // Request the OpenAI API for the response based on the prompt
   try {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
@@ -28,7 +24,7 @@ export async function POST(req: Request) {
       throw new Error(`OpenAI API returned an error: ${response.statusText}`);
     }
 
-    const stream = OpenAIStream(response.body);
+    const stream = OpenAIStream(response);
 
     return new StreamingTextResponse(stream, {
       headers: {
