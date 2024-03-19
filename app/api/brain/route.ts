@@ -1,4 +1,4 @@
-import { OpenAI, Configuration } from "openai";
+import { Configuration, OpenAIApi } from "openai";
 import { OpenAIStream, StreamingTextResponse } from "ai";
 
 // Optional, but recommended: run on the edge runtime.
@@ -10,7 +10,7 @@ const configuration = new Configuration({
   basePath: process.env.OPENAI_API_URL!,
 });
 
-const openai = new OpenAI(configuration);
+const openai = new OpenAIApi(configuration);
 
 export async function POST(req: Request) {
   // Extract the `messages` from the body of the request
