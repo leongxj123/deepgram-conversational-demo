@@ -1,39 +1,34 @@
-import axios from "axios";
 import { OpenAIStream, StreamingTextResponse } from "ai";
 
 // Optional, but recommended: run on the edge runtime.
 // See https://vercel.com/docs/concepts/functions/edge-functions
 export const runtime = "edge";
 
-async function getChatGptResponse(messages: any[]) {
-  const url = "https://api.gptgod.online/v1/chat/completions";
-  const headers = {
-    Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
-    "Content-Type": "application/json",
-  };
-  const data = {
-    model: "gpt-3.5-turbo",
-    messages: messages,
-    stream: false,
-  };
-
-  try {
-    const response = await axios.post(url, data, { headers: headers });
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
-}
-
 export async function POST(req: Request) {
   // Extract the `messages` from the body of the request
   const { messages } = await req.json();
   const start = Date.now();
 
-  // Request the API for the response based on the prompt
+  // Request the OpenAI API for the response based on the prompt
   try {
-    const response = await getChatGptResponse(messages);
-    const stream = OpenAIStream(response);
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: "gpt-3.5-turbo",
+        stream: true,
+        messages: messages,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`OpenAI API returned an error: ${response.statusText}`);
+    }
+
+    const stream = OpenAIStream(response.body);
 
     return new StreamingTextResponse(stream, {
       headers: {
@@ -42,6 +37,7 @@ export async function POST(req: Request) {
       },
     });
   } catch (error) {
-    console.error("test", error);
+    console.error("Error:", error);
+    return new Response("An error occurred", { status: 500 });
   }
 }
