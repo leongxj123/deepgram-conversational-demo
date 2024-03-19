@@ -29,7 +29,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://aura-tts-demo.deepgram.com"),
-  title: "Deepgram AI Agent",
+  title: "2023GPT AI Agent",
   description: `AI Agent Demo shows just how fast Speech-to-Text and Text-to-Speech can be.`,
   robots: {
     index: false,
