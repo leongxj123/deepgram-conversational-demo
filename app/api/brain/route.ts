@@ -7,7 +7,7 @@ export async function POST(req: Request) {
   const start = Date.now();
 
   try {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    const response = await fetch("https://api.2023gpt.top/v1/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
