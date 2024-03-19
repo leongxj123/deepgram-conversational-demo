@@ -7,9 +7,7 @@ export const runtime = "edge";
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY!,
-  baseOptions: {
-    apiBaseUrl: process.env.OPENAI_API_URL!,
-  },
+  basePath: process.env.OPENAI_API_URL!,
 });
 
 const openai = new OpenAIApi(configuration);
