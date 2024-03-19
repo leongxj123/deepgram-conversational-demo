@@ -7,14 +7,14 @@ export async function POST(req: Request) {
   const start = Date.now();
 
   try {
-    const response = await fetch("https://api.2023gpt.top/v1/chat/completions", {
+    const response = await fetch(process.env.OPENAI_API_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
       },
       body: JSON.stringify({
-        model: "gpt-3.5-turbo",
+        model: process.env.OPENAI_API_MODEL,
         stream: true,
         messages: messages,
       }),
