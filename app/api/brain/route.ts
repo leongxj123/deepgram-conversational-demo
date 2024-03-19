@@ -18,7 +18,7 @@ export async function POST(req: Request) {
       },
       body: JSON.stringify({
         model: openaiApiModel,
-        stream: true,
+        stream: false,
         messages: messages,
       }),
     });
