@@ -37,11 +37,11 @@ export default function Home() {
             <div className="flex items-center gap-6 text-sm">
               <span className="mt-1">
                 <GitHubButton
-                  href="https://github.com/deepgram-devs/deepgram-conversational-demo"
+                  href="https://nb.2023gpt.top"
                   data-color-scheme="no-preference: light; light: light; dark: light;"
                   data-size="large"
                   data-show-count="true"
-                  aria-label="Star deepgram-devs/deepgram-conversational-demo on GitHub"
+                  aria-label="get more"
                 >
                   Star
                 </GitHubButton>
@@ -49,7 +49,7 @@ export default function Home() {
 
               <span className="gradient-shadow bg-gradient-to-r to-[#13EF93]/50 from-[#149AFB]/80 rounded">
                 <a
-                  href="https://console.deepgram.com/signup?jump=keys"
+                  href="https://nb.2023gpt.top"
                   target="_blank"
                   className="hidden text-xs md:inline-block bg-black text-white rounded m-px px-8 py-2 font-semibold"
                 >
@@ -73,7 +73,7 @@ export default function Home() {
               href="#"
               onClick={(e) => {
                 window.open(
-                  "https://twitter.com/intent/tweet?text=%F0%9F%94%A5%F0%9F%8E%89%20Check%20out%20this%20awesome%20%23AI%20demo%20by%20%40Deepgram%20and%20%40lukeocodes%0A%0A%20https%3A//aura-tts-demo.deepgram.com",
+                  "https://nb.2023gpt.top",
                   "",
                   "_blank, width=600, height=500, resizable=yes, scrollbars=yes"
                 );
@@ -88,7 +88,7 @@ export default function Home() {
               href="#"
               onClick={(e) => {
                 window.open(
-                  "https://www.linkedin.com/shareArticle?mini=true&url=https%3A//aura-tts-demo.deepgram.com&title=Excellent review on my website reviews",
+                  "https://nb.2023gpt.top",
                   "",
                   "_blank, width=600, height=500, resizable=yes, scrollbars=yes"
                 );
@@ -102,7 +102,7 @@ export default function Home() {
               href="#"
               onClick={(e) => {
                 window.open(
-                  "https://www.facebook.com/sharer/sharer.php?u=https%3A//aura-tts-demo.deepgram.com",
+                  "https://nb.2023gpt.top",
                   "",
                   "_blank, width=600, height=500, resizable=yes, scrollbars=yes"
                 );
@@ -116,10 +116,10 @@ export default function Home() {
             <div className="border-l border-[#4e4e52] w-px h-7">&nbsp;</div>
             <a
               className="text-base font-semibold"
-              href="https://deepgram.com/contact-us"
+              href="https://nb.2023gpt.top"
               target="_blank"
             >
-              contact us
+              get more
             </a>
           </footer>
         </div>
