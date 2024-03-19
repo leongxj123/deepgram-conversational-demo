@@ -1,4 +1,4 @@
-import { Configuration, OpenAIApi } from "openai";
+import { OpenAIApi, Configuration } from "openai";
 import { OpenAIStream, StreamingTextResponse } from "ai";
 
 // Optional, but recommended: run on the edge runtime.
