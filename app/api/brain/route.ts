@@ -7,7 +7,7 @@ export const runtime = "edge";
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY!,
-  basePath: "https://api.openai.com/v1", // 使用OpenAI官方API URL
+  basePath: process.env.OPENAI_API_URL!, // 使用OpenAI官方API URL
 });
 
 const openai = new OpenAIApi(configuration);
