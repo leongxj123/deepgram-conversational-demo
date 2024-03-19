@@ -1,17 +1,9 @@
-import { Configuration } from "openai/configuration";
-import { OpenAIApi } from "openai/api";
 import { OpenAIStream, StreamingTextResponse } from "ai";
+import axios from "axios";
 
 // Optional, but recommended: run on the edge runtime.
 // See https://vercel.com/docs/concepts/functions/edge-functions
 export const runtime = "edge";
-
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY!,
-  basePath: process.env.OPENAI_API_URL!,
-});
-
-const openai = new OpenAIApi(configuration);
 
 export async function POST(req: Request) {
   // Extract the `messages` from the body of the request
@@ -20,13 +12,21 @@ export async function POST(req: Request) {
 
   // Request the OpenAI API for the response based on the prompt
   try {
-    const response = await openai.createChatCompletion({
-      model: "gpt-3.5-turbo-0125",
-      stream: true,
-      messages: messages,
+    const response = await axios({
+      url: process.env.OPENAI_API_URL,
+      method: "post",
+      headers: {
+        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+      },
+      data: {
+        model: "gpt-3.5-turbo",
+        messages: messages,
+        stream: true,
+      },
+      responseType: "stream",
     });
 
-    const stream = OpenAIStream(response);
+    const stream = OpenAIStream(response.data);
 
     return new StreamingTextResponse(stream, {
       headers: {
