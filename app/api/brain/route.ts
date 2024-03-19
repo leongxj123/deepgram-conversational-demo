@@ -7,7 +7,9 @@ export const runtime = "edge";
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY!,
-  basePath: process.env.OPENAI_API_URL!, // 使用OpenAI官方API URL
+  baseOptions: {
+    apiBaseUrl: process.env.OPENAI_API_URL!,
+  },
 });
 
 const openai = new OpenAIApi(configuration);
@@ -20,7 +22,7 @@ export async function POST(req: Request) {
   // Request the OpenAI API for the response based on the prompt
   try {
     const response = await openai.createChatCompletion({
-      model: "gpt-3.5-turbo",
+      model: "gpt-3.5-turbo-0125",
       stream: true,
       messages: messages,
     });
